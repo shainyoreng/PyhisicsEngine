@@ -16,13 +16,13 @@ class Object:
         self.type = type
         self.info = info
 
-    def draw(self, screen, cam_pos):
+    def draw(self, screen):
         if self.info.shape == "rect":
-            py.draw.rect(screen, self.info.color, self.get_rect(cam_pos,screen))
+            py.draw.rect(screen, self.info.color, self.get_rect(screen))
 
-    def get_rect(self, cam_pos,screen):
-        return (self.get_x()-cam_pos.x,
-                screen.get_height()-self.info.height-self.get_y()+cam_pos.y,
+    def get_rect(self,screen):
+        return (self.get_x()-self.world.camera.get_pos().x,
+                screen.get_height()-self.info.height-self.get_y()+self.world.camera.get_pos().y,
                 self.info.width,
                 self.info.height)
     
@@ -33,6 +33,6 @@ class Object:
         return self.info.pos.y
     
     def update(self):
-        self.info.pos+=self.info.speed*self.world.DeltaTime
-        self.info.speed+=Vector2D(0,self.world.gravity)*self.world.DeltaTime
+        self.info.pos+=self.info.speed*self.world.DeltaTime()
+        self.info.speed+=Vector2D(0,self.world.gravity)*self.world.DeltaTime()
 

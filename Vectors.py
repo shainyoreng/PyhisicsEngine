@@ -7,6 +7,10 @@ class Vector2D:
         self.x = x
         self.y = y
 
+    def __iter__(self):
+        yield self.x
+        yield self.y
+
     def __add__(self, other):
         return Vector2D(self.x+other.x, self.y+other.y)
 
@@ -20,7 +24,7 @@ class Vector2D:
 
         if type(other) in [int, float]:
             return Vector2D(self.x*other, self.y*other)
-    
+
     def __truediv__(self, other):
 
         if type(other) == Vector2D:
