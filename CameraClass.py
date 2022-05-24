@@ -19,17 +19,17 @@ class Camera:
             pass
 
         elif self.camera_type == CT.ConstentSpeed:
-            self.pos += self.speed*self.world.DeltaTime
+            self.pos += self.speed*self.world.DeltaTime()
 
         elif self.camera_type == CT.FreeFalling:
-            self.pos += self.speed*self.world.DeltaTime
-            self.speed += Vector2D(0, self.world.gravity)*self.world.DeltaTime
+            self.pos += self.speed*self.world.DeltaTime()
+            self.speed += Vector2D(0, self.world.gravity)*self.world.DeltaTime()
 
         elif self.camera_type == CT.Attached:
             self.pos = self.attached.info.pos-Vector2D(350, 350)
 
         elif self.camera_type == CT.MovesWith:
-            self.pos = self.pos+self.attached.info.speed*self.world.DeltaTime
+            self.pos = self.pos+self.attached.info.speed*self.world.DeltaTime()
 
-    def get_Pos(self):
+    def get_pos(self):
         return self.pos
